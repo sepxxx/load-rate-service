@@ -1,2 +1,10 @@
-package com.bnk.loadrateservice.configs;public class AppConfig {
+package com.bnk.loadrateservice.configs;
+
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@Configuration
+@EnableScheduling
+public class AppConfig {
 }
