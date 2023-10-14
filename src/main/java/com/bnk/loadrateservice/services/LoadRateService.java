@@ -1,6 +1,7 @@
 package com.bnk.loadrateservice.services;
 
 
+import com.bnk.loadrateservice.dtos.Ids;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -9,6 +10,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.lang.Math.log;
 
@@ -55,5 +60,15 @@ public class LoadRateService {
 
         }
         return -1D;
+    }
+
+    public Map<Long, Double> getLoadRatesByOfficesIds(List<Long> idsList , String faceType) {
+        Map<Long, Double> loadRates = new HashMap<>();
+        idsList.forEach((id)->{
+            loadRates.put(
+                    id, getLoadRateByOfficeId(id, faceType)
+            );
+        });
+        return loadRates;
     }
 }
